@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mcan Radio App v2.0.0</title>
+</head>
+<style>
+    ul{
+            list-style-type: none;
+    margin: 0;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: 300px;
+    }
+    li{
+       position: relative;
+    float: left;
+    width: 130px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+    margin: 10px;
+    cursor: pointer;
+    user-select: none;
+    }
+    li:hover{
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    li:last-child{
+        background: #f5f5f5;
+    }
+    #live{
+        position: relative;
+    top: -30px;
+    font-size: 10px;
+    color: #fff;
+    background: rgb(219, 54, 54);
+    height: 20px;
+    width: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 20px;
+    border-radius: 10px;
+    }
+    input[type=range][orient=vertical]
+{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    top: 10px;
+    width: 8px;
+    height: 80px;
+    position: relative;
+    cursor: pointer;
+}
+ 
+</style>
+<body>
+
+    <ul>
+        <li id="1" onclick="play('https://live.radyofenomen.com/fenomen/abr/fenomen/256/chunks.m3u8?nimblesessionid=73020595',1)">Radyo Fenomen </li>
+        <li id="2" onclick="play('https://moondigitaledge.radyotvonline.net/palstation/playlist.m3u8?listeningSessionID=6322631900068c91_120141_jE8p1WSR__00000002zTo&downloadSessionID=0',2)">Pal Station</li>
+        <li id="3" onclick="play('https://21303.live.streamtheworld.com/METRO_FM_SC?/;stream.mp3',3)">Metro FM</li>
+        <li id="4" onclick="play('https://live.powerapp.com.tr/powerfm/abr/powerfm/256/chunks.m3u8?nimblesessionid=73025042',4)">Power FM</li>
+        <li id="5" onclick="play('https://20133.live.streamtheworld.com/JOY_FM2_SC',5)">Joy FM</li>
+        <li id="6" onclick="play('https://22193.live.streamtheworld.com/SC028_SO1_SC?/;stream.mp3',6)">Joy Hits</li>
+        <li id="7" onclick="play('https://22183.live.streamtheworld.com/VIRGIN_RADIO_SC?/;stream.mp3',7)">Virgin Radio</li>
+        <li id="8" onclick="play('https://n10101m.mediatriple.net/numberone',8)">Numberone FM</li>
+        <li id="9" onclick="play(' https://22673.live.streamtheworld.com/SC010_SO1_SC?/;stream.mp3',9)">Radio Mydonose</li>
+       
+        <li>
+            <input type="range" orient="vertical" step="1" value="1" onchange="vol(this.value)" />
+        </li>
+        <li id="1" onclick="stop()">Durdur</li>
+       
+       
+ 
+    </ul>
+
+    
+
+</body>
+<script>
+    const audio = new rPlayer();
+    audio.volume = 0.01;
+     function play(song,id) {
+         
+        if(document.getElementById("live"))
+        document.getElementById("live").remove();
+       
+        var h = document.getElementById(id);
+        h.insertAdjacentHTML("beforeend", "<div id='live'>On Air</div>");
+      
+       audio.playSrc(song);
+      }
+      function stop() {
+          audio.pause();
+            if(document.getElementById("live"))
+        document.getElementById("live").remove();
+      }
+      function vol(vol){
+          audio.volume = vol/100;
+      }
+
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.14/hls.js"></script>
+<script src="js/rplayer.js"></script>
+
+</html>
